@@ -1,0 +1,33 @@
+{
+    "Working papers": [
+        {
+            "citation": "Adamczyk, W. B., & Lana, J. (2026). Artificial intelligence and firm-level employment dynamics: evidence from Brazil [Unpublished working paper].",
+            "summary": "This study applies a difference-in-differences design and machine learning techniques to Brazilian labor market data to estimate the short-term impact of generative AI on firm-level employment.",
+            "link": "",
+            "date": "2026"
+        }
+    ],
+    "Reports and research briefs": [
+        {
+            "citation": "International Labour Organization. (2026). Lifelong learning and skills for the future (World of Work Series).",
+            "summary": "This report argues that lifelong learning should be elevated as a strategic policy priority and a systemic enabler of personal and societal advancement, equity and decent work in the twenty-first century.",
+            "link": "https://doi.org/10.54394/00033011",
+            "date": "2026"
+        },
+        {
+            "citation": "Adamczyk, W. B., Boehmer, S., Delaporte, I., Escudero, V., & Liepmann, H. (2025). Developing a new method to uncover skills trends in emerging economies using online data and NLP techniques (ILO Research Brief). International Labour Organization.",
+            "summary": "This research brief outlines a novel methodology using online big data and natural language processing (NLP) to analyze transferable skills trends across diverse sectors and countries, offering insights into skills demand, supply, mismatches, and their relationship to job quality and transitions.",
+            "link": "https://doi.org/10.54394/HQQX3200",
+            "date": "2025"
+        }
+    ],
+    "Academic publications": [
+        {
+            "citation": "Adamczyk, W. B., Monasterio, L., & Fochezatto, A. (2021). Automation in the future of public sector employment: the case of Brazilian Federal Government. Technology in Society, 67, 101722.",
+            "summary": "By combining machine learning and natural language processing, this research introduces the Bartik Occupational Tasks method to estimate the automation susceptibility of Brazilian federal public sector jobs.",
+            "link": "https://doi.org/10.1016/j.techsoc.2021.101722",
+            "date": "2021"
+        }
+    ],
+    "Interviews, videos and other texts": []
+}

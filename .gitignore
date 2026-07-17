@@ -1,0 +1,3 @@
+*.txt
+deploy.ps1
+scrape_scholar.py

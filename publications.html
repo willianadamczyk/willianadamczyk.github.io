@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Willian B. Adamczyk</title>
+    <meta name="description"
+        content="Economist and data scientist specializing in the future of work, green employment, skills, and policy evaluation methodologies.">
+    <meta name="keywords"
+        content="economist, data scientist, future of work, green employment, lifelong learning, policy evaluation, labour economics, willian boschetti adamczyk">
+    <meta name="author" content="Willian B. Adamczyk">
+    <meta name="google-site-verification" content="WnHtLLXNgOfAwnWT81k0SdV3BZ5_JO6Qz9pVP3wjjSk" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Willian B. Adamczyk</div>
+            <button class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links">
+                <li><a href="index.html">About Me</a></li>
+                <li><a href="resume.html">Curriculum</a></li>
+                <li><a href="publications.html" class="active">Publications</a></li>
+                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode"></button></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-top: 4rem;">
+            <h1 class="section-title" style="margin-bottom: 0;">Academic publications</h1>
+            <a href="https://drive.google.com/file/d/1UGSuCK_g8fHntSFDLhR_cEFNS87wFQZA/view?usp=sharing"
+                class="btn btn-primary" target="_blank"><i class="fas fa-download"
+                    style="margin-right: 0.5rem;"></i>Download Full CV</a>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+            <p>Explore my peer-reviewed articles, working papers, and policy briefs centered on the future of work,
+                green employment, skills, and lifelong learning.</p>
+            <div class="tags" style="margin-top: 1rem;">
+                <span class="tag">Labour economics</span>
+                <span class="tag">Education economics</span>
+                <span class="tag">Lifelong learning</span>
+                <span class="tag">Skills</span>
+                <span class="tag">Future of work</span>
+            </div>
+        </div>
+
+        <div id="publications-container" style="margin-top: 3rem;">
+            <div class="card" style="text-align: center; padding: 3rem;">
+                <i class="fas fa-spinner fa-spin"
+                    style="font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                <p>Loading publications from Google Scholar...</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">(If this takes too long, ensure
+                    `publications.json` was generated via `scrape_scholar.py`)</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/willianadamczyk" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://scholar.google.com/citations?user=xwpw9VwAAAAJ&hl=pt-BR" target="_blank"><i
+                        class="fas fa-graduation-cap"></i></a>
+                <a href="https://www.linkedin.com/in/willian-adamczyk-67013016/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="http://lattes.cnpq.br/2790639034766349" target="_blank"><strong>Lattes</strong></a>
+            </div>
+            <p>&copy; 2026 Willian B. Adamczyk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Fetch and render grouped publications
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('assets/data/publications.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Could not load publications');
+                    return response.json();
+                })
+                .then(data => {
+                    const container = document.getElementById('publications-container');
+                    container.innerHTML = '';
+
+                    let hasItems = false;
+
+                    // Specific order as requested
+                    const order = [
+                        "Working papers",
+                        "Reports and research briefs",
+                        "Academic publications",
+                        "Interviews, videos and other texts"
+                    ];
+
+                    order.forEach(group => {
+                        const items = data[group] || [];
+                        if (items.length > 0) {
+                            hasItems = true;
+
+                            // Group Header
+                            const groupTitle = document.createElement('h2');
+                            groupTitle.className = 'section-title';
+                            groupTitle.style.marginTop = '2rem';
+                            groupTitle.textContent = group;
+                            container.appendChild(groupTitle);
+
+                            // Items in group
+                            items.forEach(pub => {
+                                const card = document.createElement('div');
+                                card.className = 'card';
+                                card.innerHTML = `
+                                    <div style="flex-wrap: nowrap; gap: 1rem;">
+                                        <h3 class="card-title" style="font-size: 1rem; line-height: 1.4; margin-bottom: 0.5rem; font-weight: 500;">
+                                            <a href="${pub.link}" target="_blank" style="color: inherit; text-decoration: none;">
+                                                ${pub.citation}
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    ${pub.summary ? `<p style="margin-top: 0.5rem; font-size: 0.9rem; text-align: justify; color: var(--text-secondary);">${pub.summary}</p>` : ''}
+                                `;
+                                container.appendChild(card);
+                            });
+                        }
+                    });
+
+                    if (!hasItems) {
+                        container.innerHTML = '<p>No publications found.</p>';
+                    }
+                })
+                .catch(error => {
+                    const container = document.getElementById('publications-container');
+                    container.innerHTML = `
+                        <div class="card" style="border-left: 4px solid #ef4444;">
+                            <p><strong>Note:</strong> Publications data not found. Please run the Python build script to generate the data.</p>
+                            <code>python build_publications.py</code>
+                        </div>
+                    `;
+                });
+        });
+    </script>
+</body>
+
+</html>
